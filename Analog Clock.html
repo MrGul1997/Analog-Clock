@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Analog Clock</title>
+    <style>
+        body{
+            background: black;
+        }
+        .con{
+            /* position: relative; */
+            widows: 100%;
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    .clock{
+        position: relative;
+        background-image: url(clock.png);
+        background-size: 100% 100%;
+        width: 27vw;
+        height: 27vw;
+        /* border: .1vw solid white; */
+        /* border-radius: 50%; */
+    }
+    .clock>img{
+        position: absolute;
+        top: -42%;
+        right: -39.9%;
+        z-index: -1;
+    }
+    .sec-needle{
+        position: absolute;
+        /* background-image: url(second.png); */
+        background-size: 100% 100%;
+        top: 50%;
+        left: 5%;
+        width: 45%;
+        background: red;
+        height: .5vh;
+        transform-origin:100%;
+        transform: rotate(90deg);
+        z-index: -1;
+        border-radius: .6vw;
+    }
+
+    .sec-needle>img{
+        height: 100%;
+        width: 100%;
+    
+    }
+
+    .min-needle{
+        position: absolute;
+        top: 50%;
+        width: 40%;
+        left: 10%;
+        background: white;
+        height: .8vh;
+        transform-origin:100%;
+        transform: rotate(90deg);
+        z-index: -1;
+        border-radius: 1vw;
+    }
+
+    .hr-needle{
+        position: absolute;
+        top: 50%;
+        left: 11%;
+        width: 38%;
+        background: cornflowerblue;
+        height: 1vh;
+        transform-origin:100%;
+        transform: rotate(100deg);
+        border-radius: 10vw;
+        z-index: -1;
+    }
+    </style>
+</head>
+<body>
+    <div class="con">
+        
+            <div class="clock">
+                <img src="g.gif" alt="">
+             <div class="sec-needle">
+                 <img src="second.png" alt="">
+             </div>
+             <div class="min-needle"></div>
+             <div class="hr-needle"></div>
+            
+        </div>
+    </div>
+
+    <script>
+    setInterval(time,1000)
+    function time(){
+
+        var a=document.querySelector(".sec-needle")
+        var clocks= new Date()
+        var sec=clocks.getSeconds()
+        var news=((sec/60)*360)+90
+        a.style.transform=`rotate(${news}deg)`
+
+        var b=document.querySelector(".min-needle")
+        var clockm= new Date()
+        var min=clockm.getMinutes()
+        var newm=((min/60)*360)+90
+        b.style.transform=`rotate(${newm}deg)`
+
+        var c=document.querySelector(".hr-needle")
+        var clockh= new Date()
+        var hr=clockh.getHours()
+        var newh=((hr/12)*360)+90+(.6*min)
+        c.style.transform=`rotate(${newh}deg)`
+    }
+
+    </script>
+</body>
+</html>
